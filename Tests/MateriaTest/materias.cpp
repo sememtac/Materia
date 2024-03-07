@@ -51,6 +51,5 @@ namespace materia
         "Ash",
         {Plant,},
         {},
-    }
-    
+    };
 }
