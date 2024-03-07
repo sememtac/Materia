@@ -49,18 +49,6 @@ namespace materia
             return _type;
         };
         compatibility* compatible(const materia*) const;
-        const materia* operator+(const materia* arg)
-        {
-            compatibility* t = this->compatible(arg);
-            switch (*t)
-            {
-            case compatibility::Destroy:
-                break;
-            case compatibility::Neutral:
-                break;
-            }
-            return this;
-        };
     };
 
     //class edge
@@ -77,40 +65,4 @@ namespace materia
         materiaGraph() {};
         ~materiaGraph() {};
     };
-
-
-    class fire : public materia
-    {
-    public:
-        using materia::materia;
-    };
-
-    class water : public materia
-    {
-    public:
-        using materia::materia;
-    };
-
-    class wind : public materia
-    {
-    public:
-        using materia::materia;
-    };
-
-    class plant : public materia
-    {
-    public:
-        using materia::materia;
-    };
-
-    class rock : public materia
-    {
-        using materia::materia;
-    };
-    
-    class ash :public materia
-    {
-        using materia::materia;
-    };
-
 }

@@ -1,5 +1,7 @@
 #pragma once
 #include "materia.h"
+#include "classes.h"
+#include <map>
 
 namespace materia
 {
@@ -10,22 +12,20 @@ namespace materia
     //	{},
     //	{}
     //};
-    namespace core_materias
-    {
-        extern const plant PLANT;
-        extern const wind WIND;
-        extern const fire FIRE;
-        extern const water WATER;
-        extern const rock ROCK;
-    }
 
+    extern const plant PLANT;
+    extern const wind WIND;
+    extern const fire FIRE;
+    extern const water WATER;
+    extern const rock ROCK;
     extern const ash ASH;
+    extern const bounder BOULDER;
     
-    const std::vector<const materia*> LIBRARY
+    const std::vector<const materia*> CORE_LIBRARY
     {
-        {  
+        {
             // core
-            &core_materias::PLANT, &core_materias::FIRE, &core_materias::WIND , &core_materias::WATER, &core_materias::ROCK,
+            &PLANT, &FIRE, &WIND , &WATER, &ROCK,
             // stable
             // unstable
             // xmute
@@ -33,8 +33,4 @@ namespace materia
             // xmute enclosed
         }
     };
-
-
-    
-
 }

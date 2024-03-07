@@ -2,49 +2,45 @@
 
 namespace materia
 {
-    namespace core_materias
+    const plant PLANT
     {
-        const plant PLANT
-        {
-            Plant,
-            "Plant",
-            {},
-            {Wind}
-        };
+        Plant,
+        "Plant",
+        {},
+        {Wind}
+    };
 
-        const fire FIRE
-        {
-            Fire,
-            "Fire",
-            {},
-            {Plant}
-        };
+    const fire FIRE
+    {
+        Fire,
+        "Fire",
+        {},
+        {Plant}
+    };
 
-        const water WATER
-        {
-            Water,
-            "Water",
-            {Plant},
-            {Fire}
-        };
+    const water WATER
+    {
+        Water,
+        "Water",
+        {Plant},
+        {Fire}
+    };
 
-        const wind WIND
-        {
-            Wind,
-            "Wind",
-            {Fire},
-            {Water},
-        };
+    const wind WIND
+    {
+        Wind,
+        "Wind",
+        {Fire},
+        {Water},
+    };
 
-        const rock ROCK
-        {
-            Rock,
-            "Rock",
-            {},
-            {Plant},
-        };
-    }
-
+    const rock ROCK
+    {
+        Rock,
+        "Rock",
+        {},
+        {Plant},
+    };
     const ash ASH
     {
         Wind,
@@ -52,4 +48,6 @@ namespace materia
         {Plant,},
         {},
     };
+
+
 }

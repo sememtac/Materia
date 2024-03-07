@@ -127,12 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="combinations.cpp" />
     <ClCompile Include="materia.cpp" />
     <ClCompile Include="materiaLib.cpp" />
     <ClCompile Include="materias.cpp" />
     <ClCompile Include="MateriaTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="classes.h" />
+    <ClInclude Include="combination.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="materia.h" />
     <ClInclude Include="materiaLib.h" />

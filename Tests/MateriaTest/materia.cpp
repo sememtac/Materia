@@ -22,6 +22,13 @@ namespace materia
                 break;
             }
         }
+        for (auto j : arg->transmutes())
+        {
+            if (this->type() == j)
+            {
+                result = compatibility::Xmute;
+            }
+        }
         return &result;
-    };
+    }
 }
