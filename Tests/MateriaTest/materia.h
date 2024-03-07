@@ -35,12 +35,11 @@ namespace materia
     //    ~edge() {};
     //};
 
-    struct graph
+    struct materiaGraph
     {
         std::vector<const materia*> _materias;
-        //std::vector<edge*> _edges;
-        graph() {};
-        ~graph() {};
+        materiaGraph() {};
+        ~materiaGraph() {};
     };
 
     std::vector<const materia*>generate();

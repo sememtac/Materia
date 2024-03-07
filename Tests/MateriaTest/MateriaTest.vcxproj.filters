@@ -24,6 +24,9 @@
     <ClCompile Include="materiaLib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="materias.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="materia.h">

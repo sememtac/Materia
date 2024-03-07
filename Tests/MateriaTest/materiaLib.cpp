@@ -4,64 +4,62 @@
 using namespace std;
 namespace materia
 {
+	bool compatible(const materia* lhs, const materia* rhs)
+	{
+		bool result { true };
+		for (auto i : rhs->destroys())
+		{
+			// Try find head on the comparing materia's destroy list
+			if (lhs->name() == i->name())
+			{
+				result = false;
+				break;
+			}
+		}
+		return result;
+	}
+	bool visited(const materia* arg, vector<const materia*> search)
+	{
+		bool result { true };
+		for (size_t i = 0; i < search.size(); i++)
+		{
+			result = search[i]->name() == arg->name();
+			if (result)
+			{
+				break;
+			}
+		}
+		return result;
+	}
+
 	std::vector<const materia*> find(const materia* choice)
 	{
 		queue<const materia*> q{};
 		vector<const materia*> search{};
 		q.push(choice);
 		search.push_back(choice);
-		string currentName{};
-		string currentKillName{};
 		bool skip{};
 
 		while (!q.empty())
 		{
 			const materia* current = q.front();
-			currentName = current->name();
 			q.pop();
 
 			for (auto item : LIBRARY)
 			{ 
 				// Reset Skip
 				skip = false;
-				if (currentName != item->name())
+				if (current->name() != item->name())
 				{
-					for (auto i : item->destroys())
-					{
-						// Found on the destroy list
-						currentKillName = i->name();
-						if (currentName == currentKillName)
-						{
-							skip = true;
-							break;
-						}
-					}
+					skip = !compatible(current, item);
 					if (!skip)
 					{
-						for (auto j : current->destroys())
-						{
-							currentKillName = j->name();
-							if (currentKillName == item->name())
-							{
-								skip = true;
-								break;
-							}
-						}
+						skip = !compatible(item, current);
 
 						if (!skip)
 						{
 							// Check if this materia has been picked
-							bool alreadyVisited{};
-							for (size_t i = 0; i < search.size(); i++)
-							{
-								if (search[i]->name() == item->name())
-								{
-									alreadyVisited = true;
-									break;
-								}
-							}
-
-							if (!alreadyVisited)
+							if (!visited(item, search))
 							{
 								// This materia will not destroy the head
 								q.push(item);
@@ -72,11 +70,9 @@ namespace materia
 				}
 			}
 		}
-
 		return search;
-
-
 	};
+
 	std::vector<const materia*> generate()
 	{
 		size_t s = LIBRARY.size();

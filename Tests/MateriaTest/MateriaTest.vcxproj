@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="materia.cpp" />
     <ClCompile Include="materiaLib.cpp" />
+    <ClCompile Include="materias.cpp" />
     <ClCompile Include="MateriaTest.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -10,41 +10,16 @@ namespace materia
     //	{},
     //	{}
     //};
-    const materia PLANT
+
+    extern const materia PLANT;
+    extern const materia WIND;
+    extern const materia FIRE;
+    extern const materia WATER;
+    extern const materia ROCK;
+
+    const std::vector<const materia*> LIBRARY
     {
-        "Plant",
-        {},
-        {}
+        {&PLANT, &FIRE, &WIND , &WATER, &ROCK}
     };
 
-    const materia FIRE
-    {
-        "Fire",
-        {},
-        {&PLANT,}
-    };
-
-    const materia WATER
-    {
-        "Water",
-        {&PLANT,},
-        {&FIRE,}
-    };
-
-    const materia AIR
-    {
-        "Air",
-        {&FIRE},
-        {&WATER},
-    };
-
-
-
-
-    const materia ROCK
-    {
-        "Rock",
-        {},
-        {},
-    };
 }
