@@ -1,8 +1,9 @@
 #include <iostream>
 #include "main.h"
 #include "time.h"
+
 using namespace std;
-string Write(vector <const materia::materia*> arg)
+string Write(vector<const materia::materia*> arg)
 {
     string result{};
     for (auto item : arg)
@@ -10,7 +11,7 @@ string Write(vector <const materia::materia*> arg)
         result += ("(" + item->name() + ")");
     }
     return result;
-}
+};
 
 int main()
 {

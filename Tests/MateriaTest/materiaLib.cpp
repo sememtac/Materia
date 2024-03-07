@@ -1,27 +1,13 @@
 #include "materiaLib.h"
 #include <queue>
 #include <typeinfo>
+
 using namespace std;
 namespace materia
 {
-	bool compatible(const materia* lhs, const materia* rhs)
-	{
-		bool result { true };
-		for (auto i : rhs->destroys())
-		{
-			// Try find head on the comparing materia's destroy list
-			// if (lhs->name() == i->name())
-			if (lhs->type() == i)
-			{
-				result = false;
-				break;
-			}
-		}
-		return result;
-	}
 	bool visited(const materia* arg, vector<const materia*> search)
 	{
-		bool result { true };
+		bool result{ true };
 		for (size_t i = 0; i < search.size(); i++)
 		{
 			result = search[i]->name() == arg->name();
@@ -31,9 +17,9 @@ namespace materia
 			}
 		}
 		return result;
-	}
+	};
 
-	std::vector<const materia*> find(const materia* choice)
+	vector<const materia*> find(const materia* choice)
 	{
 		queue<const materia*> q{};
 		vector<const materia*> search{};
@@ -47,15 +33,15 @@ namespace materia
 			q.pop();
 
 			for (auto item : LIBRARY)
-			{ 
+			{
 				// Reset Skip
 				skip = false;
 				if (current->name() != item->name())
 				{
-					skip = !compatible(current, item);
+					skip = *(current->compatible(item)) == compatibility::Destroy;
 					if (!skip)
 					{
-						skip = !compatible(item, current);
+						skip = *(item->compatible(current)) == compatibility::Destroy;
 
 						if (!skip)
 						{
@@ -74,12 +60,12 @@ namespace materia
 		return search;
 	};
 
-	std::vector<const materia*> generate()
+	vector<const materia*> generate()
 	{
 		size_t s = LIBRARY.size();
 		auto randomChoice = rand() % s;
 		int outCount{};
 		const materia* choice = LIBRARY[randomChoice];
 		return find(choice);
-	}
+	};
 }

@@ -3,4 +3,4 @@
 #include <string>
 #include "materiaLib.h"
 
-string Write(vector <const materia::materia*>);
+std::string Write(std::vector<const materia::materia*>);

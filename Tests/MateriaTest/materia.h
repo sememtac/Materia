@@ -4,6 +4,13 @@
 
 namespace materia
 {
+    enum compatibility
+    {
+        Neutral,
+        Xmute,
+        Destroy,
+    };
+
     enum baseType
     {
         Plant,
@@ -12,7 +19,9 @@ namespace materia
         Water,
         Rock,
     };
+
     const std::string baseTypeString[] = { "Plant", "Wind", "Fire", "Water", "Rock" };
+
     class materia
     {
     private:
@@ -26,20 +35,32 @@ namespace materia
         std::string name() const
         {
             return _name;
-        }
+        };
         std::vector<baseType> transmutes() const
         {
             return _transmutes;
-        }
+        };
         std::vector<baseType> destroys() const
         {
             return _destroys;
-        }
+        };
         baseType type() const
         {
             return _type;
-        }
-
+        };
+        compatibility* compatible(const materia*) const;
+        const materia* operator+(const materia* arg)
+        {
+            compatibility* t = this->compatible(arg);
+            switch (*t)
+            {
+            case compatibility::Destroy:
+                break;
+            case compatibility::Neutral:
+                break;
+            }
+            return this;
+        };
     };
 
     //class edge
@@ -56,8 +77,6 @@ namespace materia
         materiaGraph() {};
         ~materiaGraph() {};
     };
-
-    std::vector<const materia*>generate();
 
 
     class fire : public materia
