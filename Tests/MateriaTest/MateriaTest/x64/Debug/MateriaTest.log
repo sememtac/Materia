@@ -1,2 +1,3 @@
 ﻿  MateriaTest.cpp
+F:\Materia\Tests\MateriaTest\MateriaTest.cpp(17,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   MateriaTest.vcxproj -> F:\Materia\Tests\MateriaTest\x64\Debug\MateriaTest.exe

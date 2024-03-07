@@ -3,11 +3,9 @@
 using namespace std;
 namespace materia
 {
-	materia::materia()
+	materia::materia(baseType type, std::string name, std::vector<baseType> transmutes, std::vector<baseType> destroys)
 	{
-	}
-	materia::materia(std::string name, std::vector<const materia*> transmutes, std::vector<const materia*> destroys)
-	{
+		_type = type;
 		_name = name;
 		_transmutes = transmutes;
 		_destroys = destroys;

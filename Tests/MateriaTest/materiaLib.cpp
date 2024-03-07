@@ -1,6 +1,6 @@
 #include "materiaLib.h"
 #include <queue>
-
+#include <typeinfo>
 using namespace std;
 namespace materia
 {
@@ -10,7 +10,8 @@ namespace materia
 		for (auto i : rhs->destroys())
 		{
 			// Try find head on the comparing materia's destroy list
-			if (lhs->name() == i->name())
+			// if (lhs->name() == i->name())
+			if (lhs->type() == i)
 			{
 				result = false;
 				break;

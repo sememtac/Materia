@@ -10,16 +10,31 @@ namespace materia
     //	{},
     //	{}
     //};
+    namespace core_materias
+    {
+        extern const plant PLANT;
+        extern const wind WIND;
+        extern const fire FIRE;
+        extern const water WATER;
+        extern const rock ROCK;
+    }
 
-    extern const materia PLANT;
-    extern const materia WIND;
-    extern const materia FIRE;
-    extern const materia WATER;
-    extern const materia ROCK;
-
+    extern const ash ASH;
+    
     const std::vector<const materia*> LIBRARY
     {
-        {&PLANT, &FIRE, &WIND , &WATER, &ROCK}
+        {  
+            // core
+            &core_materias::PLANT, &core_materias::FIRE, &core_materias::WIND , &core_materias::WATER, &core_materias::ROCK,
+            // stable
+            // unstable
+            // xmute
+            // stable enclosed
+            // xmute enclosed
+        }
     };
+
+
+    
 
 }
