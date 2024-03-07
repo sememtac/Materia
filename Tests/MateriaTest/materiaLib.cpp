@@ -85,10 +85,10 @@ namespace materia
 				skip = false;
 				if (current->name() != item->name())
 				{
-					skip = *(current->compatible(item)) == compatibility::Destroy;
+					skip = (current->compatible(item)) == compatibility::Destroy;
 					if (!skip)
 					{
-						skip = *(item->compatible(current)) == compatibility::Destroy;
+						skip = (item->compatible(current)) == compatibility::Destroy;
 
 						if (!skip)
 						{

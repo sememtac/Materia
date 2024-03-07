@@ -48,6 +48,11 @@ namespace materia
         {Plant,},
         {},
     };
-
-
+    const boulder BOULDER
+    {
+        Rock,
+        "Boulder",
+        {},
+        {}
+    };
 }

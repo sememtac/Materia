@@ -19,7 +19,7 @@ namespace materia
     extern const water WATER;
     extern const rock ROCK;
     extern const ash ASH;
-    extern const bounder BOULDER;
+    extern const boulder BOULDER;
     
     const std::vector<const materia*> CORE_LIBRARY
     {

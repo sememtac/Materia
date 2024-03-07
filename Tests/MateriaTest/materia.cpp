@@ -10,25 +10,30 @@ namespace materia
         _transmutes = transmutes;
         _destroys = destroys;
     };
-    compatibility* materia::compatible(const materia* arg) const
+    compatibility materia::compatible(const materia* arg) const
     {
         compatibility result{ Neutral };
         for (auto i : arg->destroys())
         {
-            // Try find head on the comparing materia's destroy list
+            // Try find this materia on the comparing materia's destroy list
             if (this->type() == i)
             {
                 result = compatibility::Destroy;
-                break;
             }
         }
-        for (auto j : arg->transmutes())
+        // If target cannot destroy this materia
+        if (result != Destroy)
         {
-            if (this->type() == j)
+            for (auto j : this->transmutes())
             {
-                result = compatibility::Xmute;
+                // Try find the comparison in this materis's xmute list
+                if (arg->type() == j)
+                {
+                    result = compatibility::Xmute;
+                }
             }
         }
-        return &result;
+        
+        return result;
     }
 }

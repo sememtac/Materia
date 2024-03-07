@@ -48,7 +48,7 @@ namespace materia
         {
             return _type;
         };
-        compatibility* compatible(const materia*) const;
+        compatibility compatible(const materia*) const;
     };
 
     //class edge

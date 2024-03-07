@@ -31,7 +31,7 @@ namespace materia
     {
         using materia::materia;
     };
-    class bounder : public materia
+    class boulder : public materia
     {
         using materia::materia;
     };
