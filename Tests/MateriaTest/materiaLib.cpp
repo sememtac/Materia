@@ -13,9 +13,9 @@ namespace materia
 		size_t index{};
 		const materia* result{};
 		bool skip{};
-		if (s >= 2)
+		if (s > 1)
 		{
-			for (auto entry : COMBINATIONS)
+			for (auto entry : *combinations())
 			{
 				skip = false;
 				if (entry.second.size() == combination->size())

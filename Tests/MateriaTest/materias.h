@@ -5,53 +5,76 @@
 
 namespace materia
 {
-    // Define materia property here
-    //const materia EXAMPLE
-    //{
-    //	"Example",
-    //	{},
-    //	{}
-    //};
-    extern const plant PLANT;
-    extern const wind WIND;
-    extern const fire FIRE;
-    extern const water WATER;
-    extern const rock ROCK;
-    extern const combinations::fire::ash ASH;
-    extern const combinations::rock::boulder BOULDER;
-    
-    const std::vector<const materia*> CORE_LIBRARY
-    {
-        {
-            // core
-            &PLANT, &FIRE, &WIND , &WATER, &ROCK, &ASH, &BOULDER
-            // stable
-            // unstable
-            // xmute
-            // stable enclosed
-            // xmute enclosed
-        }
-    };
-
     namespace elements
     {
-        static const materia* fire()
+        class fire : public materia
+        {
+        public:
+            using materia::materia;
+        };
+
+        class water : public materia
+        {
+        public:
+            using materia::materia;
+        };
+
+        class wind : public materia
+        {
+        public:
+            using materia::materia;
+        };
+
+        class plant : public materia
+        {
+        public:
+            using materia::materia;
+        };
+
+        class rock : public materia
+        {
+            using materia::materia;
+        };
+        // Define materia property here
+        //const materia EXAMPLE
+        //{
+        //	"Example",
+        //	{},
+        //	{}
+        //};
+        
+        extern const plant PLANT;
+        extern const wind WIND;
+        extern const fire FIRE;
+        extern const water WATER;
+        extern const rock ROCK;
+
+
+        const std::vector<const materia*> CORE_LIBRARY
+        {
+            {
+                &PLANT, &FIRE, &WIND , &WATER, &ROCK,
+            }
+        };
+
+
+        static const materia* Fire()
         {
             return &FIRE;
         };
-        static const materia* water()
+        static const materia* Water()
         {
             return &WATER;
         }
-        static const materia* rock()
+        static const materia* Rock()
         {
             return &ROCK;
         }
-        static const materia* wind()
+        static const materia* Wind()
         {
             return &WIND;
         }
-        static const materia* plant()
+        static const materia* Plant()
         {
             return &PLANT;
         }

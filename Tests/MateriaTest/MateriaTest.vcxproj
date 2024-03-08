@@ -134,7 +134,6 @@
     <ClCompile Include="MateriaTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="classes.h" />
     <ClInclude Include="combination.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="materia.h" />

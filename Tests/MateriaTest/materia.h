@@ -53,19 +53,4 @@ namespace materia
         };
         compatibility compatible(const materia*) const;
     };
-
-    //class edge
-    //{
-    //    std::vector<const materia*> _src;
-    //    std::vector<const materia*> _dst;
-    //    edge() {};
-    //    ~edge() {};
-    //};
-
-    struct materiaGraph
-    {
-        std::vector<const materia*> _materias;
-        materiaGraph() {};
-        ~materiaGraph() {};
-    };
 }
