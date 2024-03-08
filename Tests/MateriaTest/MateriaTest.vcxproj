@@ -141,6 +141,9 @@
     <ClInclude Include="materiaLib.h" />
     <ClInclude Include="materias.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="test.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -2,7 +2,7 @@
 #include <queue>
 #include <string>
 #include "materiaLib.h"
+#include <queue>
 
 static std::string Write(std::vector<const materia::materia*>);
-static void GenerateCoreSet(std::string* arg);
-static void RandomSetTest(std::string* arg);
+static void GenerateSet(int arg);

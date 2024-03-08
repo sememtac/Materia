@@ -6,53 +6,51 @@ namespace materia
     {
         Plant,
         "Plant",
-        {},
-        {Wind}
+        {&ROCK, &FIRE},
+        {&WIND, &WATER}
     };
 
     const fire FIRE
     {
         Fire,
         "Fire",
-        {},
-        {Plant}
+        {&WATER, &WIND},
+        {&PLANT, &ROCK}
     };
 
     const water WATER
     {
         Water,
         "Water",
-        {Plant},
-        {Fire}
+        {&PLANT, &WIND},
+        {&FIRE, &ROCK}
     };
 
     const wind WIND
     {
         Wind,
         "Wind",
-        {Fire},
-        {Water},
+        {&ROCK, &PLANT},
+        {&WATER, &FIRE},
     };
 
     const rock ROCK
     {
         Rock,
         "Rock",
-        {},
-        {Plant},
+        {&FIRE, &WATER},
+        {&PLANT, &WIND},
     };
-    const ash ASH
+
+    const combinations::fire::ash ASH 
     {
-        Wind,
-        "Ash",
-        {Plant,},
-        {},
+        "Ash"
     };
-    const boulder BOULDER
+
+    const combinations::rock::boulder BOULDER
     {
-        Rock,
         "Boulder",
-        {},
-        {}
     };
+
+
 }

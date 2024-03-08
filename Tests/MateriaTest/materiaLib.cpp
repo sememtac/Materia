@@ -55,64 +55,64 @@ namespace materia
 	bool visited(const materia* arg, vector<const materia*> search)
 	{
 		bool result{ true };
-		for (size_t i = 0; i < search.size(); i++)
+
+		if (empty(search))
 		{
-			result = search[i]->name() == arg->name();
-			if (result)
+			result = false;
+		}
+		else
+		{
+			for (size_t i = 0; i < search.size(); i++)
 			{
-				break;
+				result = search[i]->name() == arg->name();
+				if (result)
+				{
+					break;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	vector<vector<const materia*>> findPath(const materia* choice, int depth)
+	{
+		vector<vector<const materia*>> result;
+		queue<vector<const materia*>> q{};
+		q.push({ choice });
+
+		while (!q.empty())
+		{
+			vector<const materia*> path = q.front();
+			q.pop();
+
+			if (path.size() == depth)
+			{
+				result.push_back(path);
+				continue;
+			}
+
+			const materia* current = path.back();
+
+			for (const materia* next : current->transmutes())
+			{
+				if (find(path.begin(), path.end(), next) == path.end())
+				{
+					vector<const materia*> newPath = path;
+					newPath.push_back(next);
+					q.push(newPath);
+				}
 			}
 		}
 		return result;
 	}
 
-	vector<const materia*> find(const materia* choice)
+	vector<vector<const materia*>> generate()
 	{
-		queue<const materia*> q{};
-		vector<const materia*> search{};
-		q.push(choice);
-		search.push_back(choice);
-		bool skip{};
-
-		while (!q.empty())
-		{
-			const materia* current = q.front();
-			q.pop();
-
-			for (auto item : CORE_LIBRARY)
-			{
-				// Reset Skip
-				skip = false;
-				if (current->name() != item->name())
-				{
-					skip = (current->compatible(item)) == compatibility::Destroy;
-					if (!skip)
-					{
-						skip = (item->compatible(current)) == compatibility::Destroy;
-
-						if (!skip)
-						{
-							// Check if this materia has been picked
-							if (!visited(item, search))
-							{
-								// This materia will not destroy the head
-								q.push(item);
-								search.emplace_back(item);
-							}
-						}
-					}
-				}
-			}
-		}
-		return search;
-	}
-
-	vector<const materia*> generate()
-	{
-		size_t s = CORE_LIBRARY.size();
+		size_t s = elements::library()->size();
 		auto randomChoice = rand() % s;
 		int outCount{};
-		const materia* choice = CORE_LIBRARY[randomChoice];
-		return find(choice);
+		const materia* choice = (*elements::library())[randomChoice];
+		return findPath(choice, 3);
 	}
 }
