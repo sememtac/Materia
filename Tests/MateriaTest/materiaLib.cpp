@@ -2,32 +2,29 @@
 #include <queue>
 #include <typeinfo>
 #include <stdexcept>
-#include "combination.h"
 
 using namespace std;
 namespace materia
 {
-	const materia* combine(vector<const materia*>* combination)
+	const elements::combination* combine(vector<const elements::element*>* arg)
 	{
-		size_t s{ combination->size() };
+		size_t s{ arg->size() };
 		size_t index{};
-		const materia* result{};
+		const elements::combination* result{};
 		bool skip{};
 		if (s > 1)
 		{
 			for (auto entry : *combinations())
 			{
 				skip = false;
-				if (entry.second.size() == combination->size())
+				if (entry.second.size() == s)
 				{
 					for (auto i : entry.second)
 					{
 						index = entry.second.size();
 						for (size_t j = 0; j < index; j++)
 						{
-							auto iName = (*combination)[j]->name();
-							auto eName = entry.second[j]->name();
-							if (iName != eName)
+							if (entry.second[j] != (*arg)[j])
 							{
 								skip = true;
 								break;
@@ -52,7 +49,7 @@ namespace materia
 		return result;
 	}
 
-	bool visited(const materia* arg, vector<const materia*> search)
+	bool visited(const elements::element* arg, vector<const elements::element*> search)
 	{
 		bool result{ true };
 
@@ -75,15 +72,15 @@ namespace materia
 		return result;
 	}
 
-	vector<vector<const materia*>> findPath(const materia* choice, int depth)
+	vector<vector<const elements::element*>> findPath(const elements::element* choice, int depth)
 	{
-		vector<vector<const materia*>> result;
-		queue<vector<const materia*>> q{};
+		vector<vector<const elements::element*>> result;
+		queue<vector<const elements::element*>> q{};
 		q.push({ choice });
 
 		while (!q.empty())
 		{
-			vector<const materia*> path = q.front();
+			vector<const elements::element*> path = q.front();
 			q.pop();
 
 			if (path.size() == depth)
@@ -92,13 +89,14 @@ namespace materia
 				continue;
 			}
 
-			const materia* current = path.back();
+			const elements::element* current = path.back();
+			const elements::element* cast = dynamic_cast<const elements::element*>(current);
 
-			for (const materia* next : current->transmutes())
+			for (const elements::element* next : cast->transmutes())
 			{
 				if (find(path.begin(), path.end(), next) == path.end())
 				{
-					vector<const materia*> newPath = path;
+					vector<const elements::element*> newPath = path;
 					newPath.push_back(next);
 					q.push(newPath);
 				}
@@ -107,12 +105,12 @@ namespace materia
 		return result;
 	}
 
-	vector<vector<const materia*>> generate()
+	vector<vector<const elements::element*>> generate()
 	{
 		size_t s = elements::library()->size();
 		auto randomChoice = rand() % s;
 		int outCount{};
-		const materia* choice = (*elements::library())[randomChoice];
+		const elements::element* choice = (*elements::library())[randomChoice];
 		return findPath(choice, 3);
 	}
 }

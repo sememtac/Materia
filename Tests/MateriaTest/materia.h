@@ -15,39 +15,28 @@ namespace materia
     {
         Plant,
         Fire,
-        Wind,
+        Air,
         Water,
         Rock,
     };
 
+    const std::string compatibilityString[] = { "Neutral", "Xmute", "Destroy" };
     const std::string baseTypeString[] = { "Plant", "Wind", "Fire", "Water", "Rock" };
 
     class materia
     {
     protected:
-        std::vector<const materia*> _transmutes;
-        std::vector<const materia*> _destroys;
         baseType _type;
         std::string _name;
     public:
-        materia(baseType type, std::string name, std::vector<const materia*> transmute, std::vector<const materia*> destroy) :
-            _type(type), _name(name), _transmutes(transmute), _destroys(destroy) {}
-        materia(std::string arg) : _name(arg), _type{}, _transmutes{}, _destroys{} {}
-        materia() : _name{}, _type{}, _transmutes{}, _destroys{} {}
+        materia(baseType type , std::string arg) : _name(arg), _type(type) {}
+        materia() : _type{}, _name{} {}
         ~materia() {};
-        std::string name() const
+        virtual std::string name() const
         {
             return _name;
         };
-        std::vector<const materia*> transmutes() const
-        {
-            return _transmutes;
-        };
-        std::vector<const materia*> destroys() const
-        {
-            return _destroys;
-        };
-        baseType type() const
+        virtual baseType type() const
         {
             return _type;
         };

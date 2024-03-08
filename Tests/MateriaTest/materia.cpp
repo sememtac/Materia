@@ -8,16 +8,33 @@ namespace materia
         compatibility result{ Neutral };
         if (this->type() != arg->type())
         {
-            for (auto i : arg->destroys())
+            bool destroy{ false };
+            switch (arg->type())
             {
-                // Try find this materia on the comparing materia's destroy list
-                if (this->type() == i->type())
-                {
-                    result = compatibility::Destroy;
-                    break;
-                }
+            case baseType::Fire:
+                destroy = (this->type() == baseType::Air || this->type() == baseType::Water);
+                break;
+            case baseType::Plant:
+                destroy = (this->type() == baseType::Fire || this->type() == baseType::Rock);
+                break;
+            case baseType::Rock:
+                destroy = (this->type() == baseType::Fire || this->type() == baseType::Water);
+                break;
+            case baseType::Water:
+                destroy = (this->type() == baseType::Plant || this->type() == baseType::Air);
+                break;
+            case baseType::Air:
+                destroy = (this->type() == baseType::Plant || this->type() == baseType::Rock);
+                break;
             }
-            result = Xmute;
+            if (destroy)
+            {
+                result = Destroy;
+            }
+            else
+            {
+                result = Xmute;
+            }
         }
         return result;
     }

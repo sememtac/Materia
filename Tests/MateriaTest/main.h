@@ -4,5 +4,5 @@
 #include "materiaLib.h"
 #include <queue>
 
-static std::string Write(std::vector<const materia::materia*>);
+static std::string Write(std::vector<const materia::elements::element*>);
 static void GenerateSet(int arg);

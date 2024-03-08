@@ -24,7 +24,7 @@
     <ClCompile Include="materiaLib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="materias.cpp">
+    <ClCompile Include="core.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="combinations.cpp">
@@ -41,7 +41,7 @@
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="materias.h">
+    <ClInclude Include="core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="combination.h">

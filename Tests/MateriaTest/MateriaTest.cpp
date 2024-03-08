@@ -5,7 +5,7 @@
 
 using namespace std;
 
-static string Write(vector<const materia::materia*> arg)
+static string Write(vector<const materia::elements::element*> arg)
 {
     string result{};
     for (auto item : arg)
@@ -20,12 +20,12 @@ void GenerateSet(int arg)
     materia::baseType roll1 = (materia::baseType)(rand() % arg);
     materia::baseType roll2 = (materia::baseType)(rand() % arg);
     materia::baseType roll3 = (materia::baseType)(rand() % arg);
-    vector<const materia::materia*> f;
+    vector<const materia::elements::element*> f;
     vector<materia::baseType*> it = { &roll1, &roll2, &roll3 };
 
     for (size_t i = 0; i < it.size(); i++)
     {
-        const materia::materia* selection{};
+        const materia::elements::element* selection{};
         switch (*it[i])
         {
         case materia::baseType::Fire:
@@ -40,7 +40,7 @@ void GenerateSet(int arg)
         case materia::baseType::Water:
             selection = materia::elements::Water();
             break;
-        case materia::baseType::Wind:
+        case materia::baseType::Air:
             selection = materia::elements::Wind();
             break;
         }
@@ -105,7 +105,7 @@ void OutPutToFile()
                     }
                 }
                 break;
-            case materia::baseType::Wind:
+            case materia::baseType::Air:
                 file << "\n Wind paths" << endl;
                 for (int i = 0; i < 6; i++)
                 {
@@ -122,13 +122,13 @@ void OutPutToFile()
     }
 }
 
-std::vector<const materia::materia*> Input(string arg)
+std::vector<const materia::elements::element*> Input(string arg)
 {
-    std::vector<const materia::materia*> result{};
+    std::vector<const materia::elements::element*> result{};
     
     for (size_t i = 0; i < arg.size(); i++)
     {
-        const materia::materia* materia{};
+        const materia::elements::element* materia{};
         switch (tolower(arg[i]))
         {
         case 'p':
@@ -156,11 +156,15 @@ int main()
 {
     srand(time(0));
 
-    std::vector<const materia::materia*> cLis{};
+    std::vector<const materia::elements::element*> cLis{};
     std::string in;
+input:
     cin >> in;
     cLis = Input(in);
-    cout << ::materia::combine(&cLis)->name() << endl;
+    const materia::elements::combination* result = materia::combine(&cLis);
+    std::string output = (result == nullptr) ? "Incorrect combination" : result->name();
+    cout << output << endl;
+    goto input;
     return 0;
 }
 

@@ -4,66 +4,156 @@ namespace materia
 {
     namespace elements
     {
-        const hammer HAMMER
+        const combination PR
         {
-            "Hammer"
+            baseType::Rock,
+            "Hammer",
         };
-        const ash ASH
+        const combination PF
         {
+            baseType::Fire,
             "Ash"
         };
-        const fireHammer FIREHAMMER
+        const combination PRF
         {
+            baseType::Fire,
             "Fire Hammer"
         };
-        const magicStaff MAGICSTAFF
+        const combination PRW
         {
+            baseType::Water,
             "Magic Staff"
         };
-        const poisonJuice POISONJUICE
+        const combination PFW
         {
+            baseType::Water,
             "Poison Juice"
         };
-        const toxicCloud TOXICCLOUD
+        const combination PFA
         {
+            baseType::Air,
             "Toxic Cloud"
         };
-        const steam STEAM
+        const combination FW
         {
+            baseType::Water,
             "Steam"
         };
-        const embers EMBERS
+        const combination FA
         {
+            baseType::Air,
             "Embers"
         };
-        const steamClub STEAMCLUB
+        const combination FWP
         {
+            baseType::Plant,
             "Steam Club"
         };
-        const fog FOG
+        const combination FWA
         {
+            baseType::Air,
             "Fog"
         };
-        const cannon CANNON
+        const combination FAR
         {
+            baseType::Rock,
             "Cannon"
         };
-        const candles CANDLES
+        const combination FAP
         {
+            baseType::Plant,
             "Candles"
         };
-        const mock MOCK
+        const combination AR
         {
+            baseType::Rock,
             "Mock"
         };
-        const sway SWAY
+        const combination AP
         {
+            baseType::Plant,
             "Sway"
         };
-        const irritate IRRITATE
+        const combination ARF
         {
+            baseType::Fire,
             "Irritate"
-        }
+        };
+        const combination ARW
+        {
+            baseType::Water,
+            "Depress"
+        };
+        const combination APR
+        {
+            baseType::Rock,
+            "Quake"
+        };
+        const combination APF
+        {
+            baseType::Fire,
+            "Burn"
+        };
+        const combination WP
+        {
+            baseType::Plant,
+            "Club"
+        };
+        const combination WA
+        {
+            baseType::Air,
+            "Rain"
+        };
+        const combination WPR
+        {
+            baseType::Rock,
+            "Spear"
+        };
+        const combination WPF
+        {
+            baseType::Fire,
+            "Torch"
+        };
+        const combination WAR
+        {
+            baseType::Rock,
+            "Hailstone"
+        };
+        const combination WAP
+        {
+            baseType::Plant,
+            "Rain Staff"
+        };
+        const combination RF
+        {
+            baseType::Fire,
+            "Glass"
+        };
+        const combination RW
+        {
+            baseType::Water,
+            "Sand"
+        };
+        const combination RFW
+        {
+            baseType::Water,
+            "Sapphire"
+        };
+        const combination RFA
+        {
+            baseType::Air,
+            "Shatter"
+        };
+        const combination RAP
+        {
+            baseType::Plant,
+            "Sand Staff"
+        };
+        const combination RWP
+        {
+            baseType::Plant,
+            "Mud Slide"
+        };
     }
     
 }
