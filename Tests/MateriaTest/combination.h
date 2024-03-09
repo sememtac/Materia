@@ -13,16 +13,8 @@ namespace materia
             using materia::materia;
         };
 
-        extern const combination PR, PF;
-        extern const combination PRF, PRW, PFW, PFA;
-        extern const combination FW ,FA;
-        extern const combination FWP, FWA, FAR, FAP;
-        extern const combination AR, AP;
-        extern const combination ARF, ARW, APR, APF;
-        extern const combination WP, WA;
-        extern const combination WPR, WPF, WAR, WAP;
-        extern const combination RF, RW;
-        extern const combination RFW, RFA, RAP, RWP;
+        extern const combination PR, PF, PRF, PRW, PFW, PFA, FW ,FA, FWP, FWA, FAR, FAP, 
+            AR, AP, ARF, ARW, APR, APF, WP, WA, WPR, WPF, WAR, WAP, RF, RW, RFW, RFA, RAP, RWP;
 
         const std::map<const combination*, std::vector<const element*>> COMBINATIONS
         {

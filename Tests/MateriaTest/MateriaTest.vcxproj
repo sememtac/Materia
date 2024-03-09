@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="combinations.cpp" />
+    <ClCompile Include="input.cpp" />
     <ClCompile Include="materia.cpp" />
     <ClCompile Include="materiaLib.cpp" />
     <ClCompile Include="core.cpp" />
@@ -135,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="combination.h" />
+    <ClInclude Include="input.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="materia.h" />
     <ClInclude Include="materiaLib.h" />

@@ -9,8 +9,7 @@ namespace materia
         class element : public materia
         {
         protected:
-            std::vector<const element*> _transmutes;
-            std::vector<const element*> _destroys;
+            std::vector<const element*> _transmutes, _destroys;
         public:
             element(baseType type, std::string name, std::vector<const element*> transmute, std::vector<const element*> destroy)
             {
@@ -36,11 +35,7 @@ namespace materia
             }
         };
 
-        extern const element PLANT;
-        extern const element AIR;
-        extern const element FIRE;
-        extern const element WATER;
-        extern const element ROCK;
+        extern const element PLANT, AIR, FIRE, WATER, ROCK;
 
         const std::vector<const element*> CORE
         {

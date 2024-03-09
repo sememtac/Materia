@@ -1,6 +1,7 @@
 #pragma once
 #include <queue>
 #include <string>
+#include "input.h"
 #include "materiaLib.h"
 #include <queue>
 

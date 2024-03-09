@@ -2,6 +2,7 @@
 #include "main.h"
 #include "time.h"
 #include <fstream>
+#include "input.h"
 
 using namespace std;
 
@@ -122,35 +123,6 @@ void OutPutToFile()
     }
 }
 
-std::vector<const materia::elements::element*> Input(string arg)
-{
-    std::vector<const materia::elements::element*> result{};
-    
-    for (size_t i = 0; i < arg.size(); i++)
-    {
-        const materia::elements::element* materia{};
-        switch (tolower(arg[i]))
-        {
-        case 'p':
-            materia = materia::elements::Plant();
-            break;
-        case 'f':
-            materia = materia::elements::Fire();
-            break;
-        case 'w':
-            materia = materia::elements::Water();
-            break;
-        case 'a':
-            materia = materia::elements::Wind();
-            break;
-        case 'r':
-            materia = materia::elements::Rock();
-            break;
-        }
-        result.push_back(materia);
-    }
-    return result;
-}
 
 int main()
 {
@@ -160,7 +132,7 @@ int main()
     std::string in;
 input:
     cin >> in;
-    cLis = Input(in);
+    cLis = materia::Input(in);
     const materia::elements::combination* result = materia::combine(&cLis);
     std::string output = (result == nullptr) ? "Incorrect combination" : result->name();
     cout << output << endl;
