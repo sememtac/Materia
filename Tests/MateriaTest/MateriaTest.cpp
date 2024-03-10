@@ -1,48 +1,47 @@
-#include <iostream>
 #include "main.h"
+#include <iostream>
 #include "time.h"
 #include <fstream>
-#include "input.h"
 
 using namespace std;
 
-static string Write(vector<const materia::elements::element*> arg)
+static string Write(vector<Materia::BaseType> t_arg)
 {
     string result{};
-    for (auto item : arg)
+    for (auto item : t_arg)
     {
-        result += ("(" + item->name() + ")");
+        result += ("(" + Materia::baseTypeString[item] + ")");
     }
     return result;
 }
 
 void GenerateSet(int arg)
 {
-    materia::baseType roll1 = (materia::baseType)(rand() % arg);
-    materia::baseType roll2 = (materia::baseType)(rand() % arg);
-    materia::baseType roll3 = (materia::baseType)(rand() % arg);
-    vector<const materia::elements::element*> f;
-    vector<materia::baseType*> it = { &roll1, &roll2, &roll3 };
+    Materia::BaseType roll1 = (Materia::BaseType)(rand() % arg);
+    Materia::BaseType roll2 = (Materia::BaseType)(rand() % arg);
+    Materia::BaseType roll3 = (Materia::BaseType)(rand() % arg);
+    vector<Materia::BaseType> f;
+    vector<Materia::BaseType*> it = { &roll1, &roll2, &roll3 };
 
     for (size_t i = 0; i < it.size(); i++)
     {
-        const materia::elements::element* selection{};
+        Materia::BaseType selection{};
         switch (*it[i])
         {
-        case materia::baseType::Fire:
-            selection = materia::elements::Fire();
+        case Materia::BaseType::Fire:
+            selection = Materia::BaseType::Fire;
             break;
-        case materia::baseType::Plant:
-            selection = materia::elements::Plant();
+        case Materia::BaseType::Plant:
+            selection = Materia::BaseType::Plant;
             break;
-        case materia::baseType::Rock:
-            selection = materia::elements::Rock();
+        case Materia::BaseType::Rock:
+            selection = Materia::BaseType::Rock;
             break;
-        case materia::baseType::Water:
-            selection = materia::elements::Water();
+        case Materia::BaseType::Water:
+            selection = Materia::BaseType::Water;
             break;
-        case materia::baseType::Air:
-            selection = materia::elements::Wind();
+        case Materia::BaseType::Air:
+            selection = Materia::BaseType::Air;
             break;
         }
         f.emplace_back(selection);
@@ -53,68 +52,55 @@ void GenerateSet(int arg)
 }
 
 
-void OutPutToFile()
+void OutPutToFile(Materia::MateriaGraph* t_graph)
 {
+    int depth = 10;
     ofstream file("output.txt");
     if (file.is_open())
     {
+        std::vector<std::vector<Materia::BaseType>> t{};
         for (int j = 0; j < 6; j++)
         {
-            switch ((materia::baseType)j)
+            switch ((Materia::BaseType)j)
             {
-            case materia::baseType::Fire:
+            case Materia::BaseType::Fire:
                 file << "\n Fire paths" << endl;
-                for (int i = 0; i < 6; i++)
+                t = Materia::MateriaGraph::FindPath(t_graph, Materia::BaseType::Fire, depth);
+                for (size_t k = 0; k < t.size(); k++)
                 {
-                    auto t = findPath(materia::elements::Fire(), i);
-                    for (size_t k = 0; k < t.size(); k++)
-                    {
-                        file << Write(t[k]) << endl;
-                    }
+                    file << Write(t[k]) << endl;
                 }
                 break;
-            case materia::baseType::Plant:
+            case Materia::BaseType::Plant:
                 file << "\n Plant paths" << endl;
-                for (int i = 0; i < 6; i++)
+                t = Materia::MateriaGraph::FindPath(t_graph, Materia::BaseType::Plant, depth);
+                for (size_t k = 0; k < t.size(); k++)
                 {
-                    auto t = findPath(materia::elements::Plant(), i);
-                    for (size_t k = 0; k < t.size(); k++)
-                    {
-                        file << Write(t[k]) << endl;
-                    }
+                    file << Write(t[k]) << endl;
                 }
                 break;
-            case materia::baseType::Rock:
+            case Materia::BaseType::Rock:
                 file << "\n Rock paths" << endl;
-                for (int i = 0; i < 6; i++)
+                t = Materia::MateriaGraph::FindPath(t_graph, Materia::BaseType::Rock, depth);
+                for (size_t k = 0; k < t.size(); k++)
                 {
-                    auto t = findPath(materia::elements::Rock(), i);
-                    for (size_t k = 0; k < t.size(); k++)
-                    {
-                        file << Write(t[k]) << endl;
-                    }
+                    file << Write(t[k]) << endl;
                 }
                 break;
-            case materia::baseType::Water:
+            case Materia::BaseType::Water:
                 file << "\n Water paths" << endl;
-                for (int i = 0; i < 6; i++)
+                t = Materia::MateriaGraph::FindPath(t_graph, Materia::BaseType::Water, depth);
+                for (size_t k = 0; k < t.size(); k++)
                 {
-                    auto t = findPath(materia::elements::Water(), i);
-                    for (size_t k = 0; k < t.size(); k++)
-                    {
-                        file << Write(t[k]) << endl;
-                    }
+                    file << Write(t[k]) << endl;
                 }
                 break;
-            case materia::baseType::Air:
+            case Materia::BaseType::Air:
                 file << "\n Wind paths" << endl;
-                for (int i = 0; i < 6; i++)
+                t = Materia::MateriaGraph::FindPath(t_graph, Materia::BaseType::Air, depth);
+                for (size_t k = 0; k < t.size(); k++)
                 {
-                    auto t = findPath(materia::elements::Wind(), i);
-                    for (size_t k = 0; k < t.size(); k++)
-                    {
-                        file << Write(t[k]) << endl;
-                    }
+                    file << Write(t[k]) << endl;
                 }
                 break;
             }
@@ -126,14 +112,18 @@ void OutPutToFile()
 
 int main()
 {
+    
     srand(time(0));
 
-    std::vector<const materia::elements::element*> cLis{};
-    std::string in;
+    Materia::MateriaGraph* t = new Materia::MateriaGraph();
+    // std::vector<std::vector<Materia::BaseType>> f = Materia::FindPath(t, Materia::BaseType::Plant, 3);
+    OutPutToFile(t);
 input:
+    std::vector<Materia::BaseType>* cLis = new std::vector<Materia::BaseType>{};
+    std::string in;
     cin >> in;
-    cLis = materia::Input(in);
-    const materia::elements::combination* result = materia::combine(&cLis);
+    
+    const Materia::Materia* result = Materia::Combine(Materia::Input(in, cLis));
     std::string output = (result == nullptr) ? "Incorrect combination" : result->name();
     cout << output << endl;
     goto input;

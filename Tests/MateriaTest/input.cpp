@@ -1,40 +1,38 @@
 #include "input.h"
 
 using namespace std;
-namespace materia
+namespace Materia
 {
-    std::vector<const elements::element*> Input(std::string arg)
+    std::vector<BaseType>* Input(std::string t_arg, std::vector<BaseType>* t_input)
     {
-        std::vector<const elements::element*> result{};
-
-        size_t s = arg.size();
-        if (arg != "Generate")
+        size_t s = t_arg.size();
+        if (t_arg != "Generate")
         {
-            for (size_t i = 0; i < arg.size(); i++)
+            for (size_t i = 0; i < t_arg.size(); i++)
             {
-                const elements::element* materia{};
-                switch (tolower(arg[i]))
+                BaseType choice{};
+                switch (tolower(t_arg[i]))
                 {
                 case 'p':
-                    materia = elements::Plant();
+                    choice = Plant;
                     break;
                 case 'f':
-                    materia = elements::Fire();
+                    choice = Fire;
                     break;
                 case 'w':
-                    materia = elements::Water();
+                    choice = Water;
                     break;
                 case 'a':
-                    materia = elements::Wind();
+                    choice = Air;
                     break;
                 case 'r':
-                    materia = elements::Rock();
+                    choice = Rock;
                     break;
                 }
-                result.push_back(materia);
+                t_input->push_back(choice);
             }
         }
         
-        return result;
+        return t_input;
     }
 }

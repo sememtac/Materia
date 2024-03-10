@@ -1,9 +1,11 @@
 #pragma once
+#include "materia.h"
+#include "combination.h"
+#include "graph.h"
+#include "input.h"
 #include <queue>
 #include <string>
-#include "input.h"
-#include "materiaLib.h"
-#include <queue>
 
-static std::string Write(std::vector<const materia::elements::element*>);
+static std::string Write(std::vector<const Materia::Materia*>);
 static void GenerateSet(int arg);
+void OutPutToFile(Materia::MateriaGraph);

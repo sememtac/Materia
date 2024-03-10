@@ -1,30 +1,39 @@
 #include "materia.h"
 
 using namespace std;
-namespace materia
+namespace Materia
 {
-    compatibility materia::compatible(const materia* arg) const
+    const Materia* ELEMENTS[5]
     {
-        compatibility result{ Neutral };
+        &FIRE,
+        &WATER,
+        &AIR,
+        &ROCK,
+        &PLANT
+    };
+
+    Compatibility Materia::Compatible(const Materia* arg) const
+    {
+        Compatibility result{ Neutral };
         if (this->type() != arg->type())
         {
             bool destroy{ false };
             switch (arg->type())
             {
-            case baseType::Fire:
-                destroy = (this->type() == baseType::Air || this->type() == baseType::Water);
+            case BaseType::Fire:
+                destroy = (this->type() == BaseType::Air || this->type() == BaseType::Water);
                 break;
-            case baseType::Plant:
-                destroy = (this->type() == baseType::Fire || this->type() == baseType::Rock);
+            case BaseType::Plant:
+                destroy = (this->type() == BaseType::Fire || this->type() == BaseType::Rock);
                 break;
-            case baseType::Rock:
-                destroy = (this->type() == baseType::Fire || this->type() == baseType::Water);
+            case BaseType::Rock:
+                destroy = (this->type() == BaseType::Fire || this->type() == BaseType::Water);
                 break;
-            case baseType::Water:
-                destroy = (this->type() == baseType::Plant || this->type() == baseType::Air);
+            case BaseType::Water:
+                destroy = (this->type() == BaseType::Plant || this->type() == BaseType::Air);
                 break;
-            case baseType::Air:
-                destroy = (this->type() == baseType::Plant || this->type() == baseType::Rock);
+            case BaseType::Air:
+                destroy = (this->type() == BaseType::Plant || this->type() == BaseType::Rock);
                 break;
             }
             if (destroy)
@@ -38,4 +47,6 @@ namespace materia
         }
         return result;
     }
+
+
 }

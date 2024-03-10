@@ -1,8 +1,7 @@
 #pragma once
-
-#include "materiaLib.h"
+#include "materia.h"
 #include <vector>
-namespace materia
+namespace Materia
 {
-	std::vector<const elements::element*> Input(std::string arg);
+	std::vector<BaseType>* Input(std::string, std::vector<BaseType>*);
 }
